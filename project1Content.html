@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        table, th, td {
+            border:1px solid black;
+        }
+    </style>
+</head>
+<body>
+
+<table style="width:100%">
+    <tr>
+        <td>First name</td>
+        <td>
+            <input type="text" id="fname" name="fnamee" value="">
+        </td>
+    </tr>
+    <tr>
+        <td>Last name</td>
+        <td>
+            <input type="text" id="lname" name="lnamee" value="">
+        </td>
+    </tr>
+    <tr>
+        <td>Age</td>
+        <td>
+            <select name="agee">
+                <option value="No data entered">Age</option>
+                <option value="16 - 24">16 - 24</option>
+                <option value="25 - 34">25 - 34</option>
+                <option value="35 - 50">35 - 50</option>
+                <option value="51 - 60">51 - 60</option>
+                <option value="60+">60+</option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td>Sex</td>
+        <td>
+            Male: <input type="radio" name="sexe" value="Male"> <br>
+            Female: <input type="radio" name="sexe" value="Female">
+        </td>
+    </tr>
+    <tr>
+        <td>Hobby(s)</td>
+        <td>
+            <input type="checkbox" name="set1" value="Football"> Football <br>
+            <input type="checkbox" name="set1" value="Basketball"> Basketball <br>
+            <input type="checkbox" name="set1" value="Swimming"> Swimming <br> 
+            <input type="checkbox" name="set1" value="Reading"> Reading
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <button onclick="myFunctione()">OK</button>
+        </td>
+        <td>
+            <button>CANCEL</button>
+        </td>
+    </tr>
+</table>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        // Add event handling for focus and blur
+        $('input[type="text"], select, input[type="radio"], input[type="checkbox"]').focus(function() {
+            $(this).closest('tr').css('background-color', 'rgb(183, 240, 219)'); // Change background color of the parent row on focus
+        });
+
+        $('input[type="text"], select, input[type="radio"], input[type="checkbox"]').blur(function() {
+            $(this).closest('tr').css('background-color', ''); // Reset background color of the parent row on blur
+        });
+    });
+
+    function myFunctione() {
+        let fnamee = document.getElementsByName("fnamee")[0].value;
+        let lnamee = document.getElementsByName("lnamee")[0].value;
+        let agee = document.getElementsByName("agee")[0].value;
+        let sexe = document.querySelector('input[name="sexe"]:checked').value;
+        let hobbye = [];
+        let hobbyoptionse = document.querySelectorAll('input[name="set1"]:checked');
+        
+        for (let i=0; i < hobbyoptionse.length; i++) {
+            hobbye.push(hobbyoptionse[i].value);
+        }
+        
+        let messagee = `First name: ${fnamee}\nLast name: ${lnamee}\nAge: ${agee}\nSex: ${sexe}\nHobby(s): ${hobbye.join(", ")}`;
+        alert(messagee);
+    }
+</script>
+
+</body>
+</html>
